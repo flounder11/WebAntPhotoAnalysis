@@ -1,9 +1,16 @@
 ### Микросервис преобразования картинки в Gherkin
 ## Запуск
 ```
+ python .\testUpload.py
+ ```
+
+Или
+
+```
 docker build -t image_to_gherkin .
 docker run image_to_gherkin
 ```
+
 ## Пример запроса
 ```
 curl -X POST "http://localhost:8001/generate-gherkin" \
