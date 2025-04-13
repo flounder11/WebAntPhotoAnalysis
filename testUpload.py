@@ -8,7 +8,6 @@ import asyncio
 
 app = FastAPI()
 
-# Настройка CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -17,7 +16,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Модель для входных данных
 class GherkinRequest(BaseModel):
     base64_image: str
     description: str
@@ -29,9 +27,6 @@ async def test():
 
 @app.post("/generate-gherkin")
 async def generate_gherkin(request: GherkinRequest):
-    """
-    Генерирует Gherkin-тесткейс на основе изображения
-    """
     api_key = os.getenv("MISTRAL_AI_API_KEY")
     if not api_key:
         raise HTTPException(status_code=500, detail="API key not configured")
